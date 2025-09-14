@@ -72,13 +72,13 @@ function start() {
             logger.info(`server running on port ${(server.address() as {port: number}).port}...`)
             SocketService.useSocketServer(server)
         })
-        // VoiceService.loadVoicesToDB()
-        // .then(res=>{
-        //     logger.info('Voices loaded successfully.')
-        // })
-        // .catch(err=>{
-        //     logger.err('Failed to load voices')
-        // })
+        VoiceService.loadVoicesToDB()
+        .then(res=>{
+            logger.info('Voices loaded successfully.')
+        })
+        .catch(err=>{
+            logger.err('Failed to load voices')
+        })
     })
 }
 
