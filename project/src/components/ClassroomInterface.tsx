@@ -26,7 +26,6 @@ import TTSControls from './ui/TTSControls';
 import AudioIndicator from './ui/AudioIndicator';
 import { documentAPI } from '../lib/api';
 import { useParams } from 'next/navigation';
-import ReactMarkdown from 'react-markdown';
 import { io, Socket } from "socket.io-client";
 import { useSession } from '../utils/hooks/useSession';
 import { stopSpeaking, clearSpeechQueue, isTTSAvailable } from '../utils/textToSpeech';
@@ -34,6 +33,8 @@ import toast from 'react-hot-toast';
 import { TextNode } from '../utils/tts';
 import { useTtsChat } from '../utils/hooks/useTts';
 import { DiscussionMessageCard } from './ui/DiscussionMessageCard';
+
+const ReactMarkdown = React.lazy(() =>import('react-markdown'))
 
 interface Chapter {
   _id: string;

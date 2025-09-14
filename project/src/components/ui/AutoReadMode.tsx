@@ -50,7 +50,7 @@ const AutoReadMode: React.FC<AutoReadModeProps> = ({
   const [highlightedText, setHighlightedText] = useState('');
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   
-  const intervalRef = useRef<NodeJS.Timeout>();
+  const intervalRef = useRef<any>();
   const wordsRef = useRef<string[]>([]);
 
   // Initialize words for current content

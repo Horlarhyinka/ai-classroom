@@ -1,13 +1,19 @@
 import axios from 'axios';
-import { getTextExtractor } from 'office-text-extractor';
-import { fileTypeFromBuffer } from 'file-type';
 
 export const extractFileFromURL = async (url: string) => {
   console.log({fileUrl: url})
     const response = await axios.get(url, { responseType: 'arraybuffer' });
     const buffer = Buffer.from(response.data);
+    const { fileTypeFromBuffer } = await getFileTypeModule()
     const fileType = await fileTypeFromBuffer(buffer);
-  
+    async function getExtractor(){
+      return await import('office-text-extractor')
+    }
+
+    async function getFileTypeModule(){
+      return await import('file-type')
+    }
+    const { getTextExtractor } = await getExtractor();
     let resumeText;
   
     try {
