@@ -26,9 +26,8 @@ app.use(cors({
 }))
 console.log('My cors origin points to ->', envVars.CLIENT_BASE_URL)
 app.use(Session({ 
-    name: 'ai-classroom-session',
     secret: envVars.APP_SECRET, 
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     store: MongoStore.create({
         collectionName: 'sessions',
@@ -36,10 +35,10 @@ app.use(Session({
         mongoUrl: envVars.DB_URL,
     }),
     cookie: {
+        maxAge: 30 * 60 * 1000,
         httpOnly: true,
         secure: true,
         sameSite: 'none',
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours
     }
 }))
 
